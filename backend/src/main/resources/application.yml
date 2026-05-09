@@ -3,10 +3,11 @@ server:
 
 spring:
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/blog-application-db}
-    username: ${SPRING_DATASOURCE_USERNAME:postgres}
-    password: ${SPRING_DATASOURCE_PASSWORD:Nivi-1627}
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: org.postgresql.Driver
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -18,10 +19,10 @@ spring:
 
 app:
   jwt:
-    secret: ${ACCESS_TOKEN_SECRET:blog_access_secret_super_secure_key_32chars}
+    secret: ${ACCESS_TOKEN_SECRET}
     expiration-ms: ${ACCESS_TOKEN_EXPIRATION_MS:900000}
   cors:
-    allowed-origins: ${CLIENT_URL:http://localhost:5173}
+    allowed-origins: ${CLIENT_URL}
 
 springdoc:
   swagger-ui:
