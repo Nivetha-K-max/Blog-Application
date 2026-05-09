@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:blogtest;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+app:
+  jwt:
+    secret: blog_access_secret_super_secure_key_32chars
+    expiration-ms: 900000
+  cors:
+    allowed-origins: http://localhost:5173

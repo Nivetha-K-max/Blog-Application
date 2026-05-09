@@ -1,0 +1,45 @@
+CREATE TABLE users (
+  id BIGSERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  username VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  role VARCHAR(20) NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL
+);
+
+CREATE TABLE categories (
+  id BIGSERIAL PRIMARY KEY,
+  category_name VARCHAR(255) NOT NULL UNIQUE
+);
+
+CREATE TABLE blogs (
+  id BIGSERIAL PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  description VARCHAR(500) NOT NULL,
+  content TEXT NOT NULL,
+  category VARCHAR(255) NOT NULL,
+  image_url VARCHAR(255),
+  user_id BIGINT NOT NULL REFERENCES users(id),
+  created_at TIMESTAMPTZ,
+  updated_at TIMESTAMPTZ
+);
+
+CREATE TABLE comments (
+  id BIGSERIAL PRIMARY KEY,
+  comment VARCHAR(1000) NOT NULL,
+  created_at TIMESTAMPTZ,
+  blog_id BIGINT NOT NULL REFERENCES blogs(id),
+  user_id BIGINT NOT NULL REFERENCES users(id)
+);
+
+CREATE TABLE blog_tags (
+  blog_id BIGINT NOT NULL REFERENCES blogs(id) ON DELETE CASCADE,
+  tag VARCHAR(255)
+);
+
+CREATE TABLE blog_likes (
+  blog_id BIGINT NOT NULL REFERENCES blogs(id) ON DELETE CASCADE,
+  user_id BIGINT NOT NULL,
+  PRIMARY KEY (blog_id, user_id)
+);
