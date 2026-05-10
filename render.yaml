@@ -1,0 +1,49 @@
+services:
+  # ── Backend ──────────────────────────────────────────────
+  - type: web
+    name: blog-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: blog-db
+          property: connectionString
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: blog-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: blog-db
+          property: password
+      - key: ACCESS_TOKEN_SECRET
+        generateValue: true
+      - key: ACCESS_TOKEN_EXPIRATION_MS
+        value: 900000
+      - key: CLIENT_URL
+        value: https://blog-frontend.onrender.com
+    healthCheckPath: /api/blogs
+
+  # ── Frontend ─────────────────────────────────────────────
+  - type: web
+    name: blog-frontend
+    runtime: docker
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: ./frontend
+    buildArgs:
+      - key: VITE_API_URL
+        value: https://blog-backend.onrender.com/api
+    envVars:
+      - key: VITE_API_URL
+        value: https://blog-backend.onrender.com/api
+
+# ── Database ──────────────────────────────────────────────
+databases:
+  - name: blog-db
+    databaseName: blog-application-db
+    user: postgres
+    plan: free
