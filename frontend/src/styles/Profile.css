@@ -15,7 +15,7 @@
 .profile-banner-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(22,106,91,0.75) 0%, rgba(192,71,52,0.65) 100%);
+  background: linear-gradient(135deg, rgba(22,106,91,0.82) 0%, rgba(15,76,130,0.75) 100%);
 }
 
 .profile-hero {
@@ -76,7 +76,7 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
-.profile-role-badge.admin { background: rgba(192,71,52,0.85); color: white; }
+.profile-role-badge.admin { background: linear-gradient(135deg, rgba(99,102,241,0.9), rgba(139,92,246,0.9)); color: white; }
 .profile-role-badge.user  { background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.4); }
 
 .profile-write-btn { border-radius: 50px; padding: 0.6rem 1.4rem; flex-shrink: 0; }
@@ -184,7 +184,7 @@
   font-size: 0.78rem;
   font-weight: 700;
 }
-.role-tag.admin { background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); }
+.role-tag.admin { background: color-mix(in srgb, #6366f1 15%, transparent); color: #6366f1; }
 .role-tag.user  { background: color-mix(in srgb, var(--primary) 15%, transparent); color: var(--primary); }
 
 /* Posts Card */
