@@ -123,3 +123,23 @@ For a Docker server such as AWS EC2, DigitalOcean, Render, Railway, or a VM:
 2. Build and push images through `.github/workflows/ci-cd.yml`.
 3. On the server, run `docker compose up -d`.
 4. Point your domain or reverse proxy to frontend port `5173` and backend port `5000`.
+
+Recommended GitHub secrets:
+
+- `DOCKERHUB_USERNAME`
+- `DOCKERHUB_TOKEN`
+- `DEPLOY_HOST`
+- `DEPLOY_USER`
+- `DEPLOY_SSH_KEY`
+- `DEPLOY_PATH`
+
+## Database Schema
+
+The SQL schema is available in `database-schema.sql`. In development, Hibernate also creates/updates tables automatically through `spring.jpa.hibernate.ddl-auto=update`.
+
+## Security Notes
+
+- Store production secrets outside source control.
+- Replace the sample JWT secret before deployment.
+- Use HTTPS in production.
+- Limit admin registration in real deployments by replacing public role selection with an invite or server-side allowlist.
